@@ -1,0 +1,18 @@
+# environment variables
+.env
+
+# python virtual environments
+venv/
+.venv/
+.env/
+env/
+
+# javascript dependencies
+node_modules/
+
+# go binaries
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib

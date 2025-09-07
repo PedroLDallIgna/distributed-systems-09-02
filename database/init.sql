@@ -1,0 +1,11 @@
+CREATE TABLE IF NOT EXISTS DBStatus (
+  id INT DEFAULT 0
+);
+
+CREATE TABLE IF NOT EXISTS Events (
+  id INT DEFAULT 0,
+  valor VARCHAR(127) DEFAULT '',
+  processing INT DEFAULT 0
+);
+
+INSERT INTO DBStatus (id) VALUES (0);
