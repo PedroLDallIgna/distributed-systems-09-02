@@ -56,7 +56,7 @@ def main():
                 random_word = get_random_word()
                 if random_word:
                     cursor.execute("UPDATE Events SET valor = %s, processing = 0 WHERE id = %s", (random_word, event_id))
-                    print(f'Inserted value {random_word} in record ID {event_id}')
+                    print(f'Inserted value \'{random_word}\' in record ID {event_id}')
                     conn.commit()
         except Exception as e:
             print(f"Error: {e}")
