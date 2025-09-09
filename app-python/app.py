@@ -58,7 +58,8 @@ def get_event_by_id(id):
     cursor.close()
     conn.close()
     if result:
-        return jsonify({"valor": result[1]})
+        print(result)
+        return jsonify({"valor": result[0]})
     return jsonify({"message": "Event not found"}), 404
 
 
@@ -95,8 +96,8 @@ def create_event_sync():
             conn.commit()
             cursor.close()
 
-            if event and event[1] != '':
-                value = event[1]
+            if event and event[0] != '':
+                value = event[0]
                 break
             
             time.sleep(0.1)

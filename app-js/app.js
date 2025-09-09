@@ -35,7 +35,7 @@ app.get("/", (req, res) => {
   // get all events
   con.query(GET_STATUS_ID, (err, results) => {
     if (err) throw err;
-    return res.json({ events: results[0] });
+    return res.json({ events: results[0].id });
   });
 });
 
@@ -44,7 +44,7 @@ app.get("/:id", (req, res) => {
   const { id } = req.params;
   con.query(GET_EVENT_BY_ID, [id], (err, results) => {
     if (err) throw err;
-    return res.json({ valor: results[0] });
+    return res.json({ valor: results[0].valor });
   });
 });
 
