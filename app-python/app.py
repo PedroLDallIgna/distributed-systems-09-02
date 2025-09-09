@@ -20,8 +20,8 @@ def get_conn():
     return pool.get_connection()
 
 CREATE_EVENT_QUERY = "INSERT INTO Events (id, valor) VALUES (%s, \"\")"
-GET_ALL_EVENTS = "SELECT * FROM Events"
-GET_EVENT_BY_ID = "SELECT * FROM Events WHERE id = %s"
+GET_ALL_EVENTS = "SELECT id, valor FROM Events"
+GET_EVENT_BY_ID = "SELECT valor FROM Events WHERE id = %s"
 GET_STATUS_ID = "SELECT * FROM DBStatus"
 UPDATE_STATUS_ID = "UPDATE DBStatus SET id = %s"
 
@@ -58,7 +58,7 @@ def get_event_by_id(id):
     cursor.close()
     conn.close()
     if result:
-        return jsonify({"event": result[1]})
+        return jsonify({"valor": result[1]})
     return jsonify({"message": "Event not found"}), 404
 
 
@@ -101,7 +101,7 @@ def create_event_sync():
             
             time.sleep(0.1)
 
-        return jsonify({"message": value}), 201
+        return jsonify({"valor": value}), 201
     except Exception as e:
         return jsonify({"error": str(e)}), 500
     finally:

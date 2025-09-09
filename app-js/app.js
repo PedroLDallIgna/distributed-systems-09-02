@@ -10,8 +10,8 @@ const con = mysql.createConnection({
 });
 
 const CREATE_EVENT_QUERY = "INSERT INTO Events (id) VALUES (?)";
-const GET_ALL_EVENTS = "SELECT * FROM Events";
-const GET_EVENT_BY_ID = "SELECT * FROM Events WHERE id = ?";
+const GET_ALL_EVENTS = "SELECT id, valor FROM Events";
+const GET_EVENT_BY_ID = "SELECT valor FROM Events WHERE id = ?";
 const GET_STATUS_ID = "SELECT * FROM DBStatus";
 const UPDATE_STATUS_ID = "UPDATE DBStatus SET id = ?";
 
@@ -33,9 +33,9 @@ app.use((req, res, next) => {
 
 app.get("/", (req, res) => {
   // get all events
-  con.query(GET_ALL_EVENTS, (err, results) => {
+  con.query(GET_STATUS_ID, (err, results) => {
     if (err) throw err;
-    return res.json({ events: results });
+    return res.json({ events: results[0] });
   });
 });
 
@@ -44,7 +44,7 @@ app.get("/:id", (req, res) => {
   const { id } = req.params;
   con.query(GET_EVENT_BY_ID, [id], (err, results) => {
     if (err) throw err;
-    return res.json({ event: results[0] });
+    return res.json({ valor: results[0] });
   });
 });
 
@@ -80,7 +80,7 @@ app.post("/create-sync", (req, res) => {
           const event = results[0];
           if (event && event.valor && event.valor !== "") {
             clearInterval(interval);
-            return res.json({ message: event.valor });
+            return res.json({ valor: event.valor });
           }
         });
       }, 100);
