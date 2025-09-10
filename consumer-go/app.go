@@ -30,7 +30,7 @@ func getRandomWord() string {
 
 func main() {
 	fmt.Println("Starting consumer...")
-	db, err := sql.Open("mysql", "user:password@tcp(localhost:3306)/messages")
+	db, err := sql.Open("mysql", "user:password@tcp(mysql:3306)/messages")
 
 	if err != nil {
 		panic(err.Error())

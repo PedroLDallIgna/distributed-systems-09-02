@@ -10,7 +10,7 @@ def get_random_word():
 
 def main():
     conn = mysql.connector.connect(
-      host="localhost",
+      host="mysql",
       user="user",
       password="password",
       database="messages"
